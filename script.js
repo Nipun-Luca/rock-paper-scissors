@@ -1,8 +1,27 @@
 const gamePicks = ["rock", "paper", "scissors"];
-let  computerSelection;
-let  playerSelection;
+let computerSelection;
+let playerSelection;
 let playerScore = 0;
 let computerScore = 0;
+let total_rounds = 0;
+
+let winning_announcement = document.getElementById("win-announcement");
+
+let button1 = document.getElementById("rock");
+let button2 = document.getElementById("paper");
+let button3 = document.getElementById("scissors");
+
+
+function handleClick(event) {
+    playerSelection = event.target.id;
+    game()
+}
+
+//Add event listeners to the buttons
+button1.addEventListener("click", handleClick);
+button2.addEventListener("click", handleClick);
+button3.addEventListener("click", handleClick);
+
 
 function getComputerChoice(){
     let select = Math.floor(Math.random() * 3);
@@ -10,35 +29,48 @@ function getComputerChoice(){
 }
 
 function game(){
+    let display_player_score = document.getElementById("player-score");
+    let display_computer_score = document.getElementById("computer-score");
+
     computerSelection = getComputerChoice();
-    playerSelection = prompt("Rock, paper, or scissors? ").toLowerCase();
 
+
+    //Winning conditions
     if (playerSelection == computerSelection) {
-        console.log("TIE");
+        winning_announcement.textContent = `Tie, ${playerSelection} and ${computerSelection}`;
     } else if (playerSelection == "rock" && computerSelection == "scissors") {
-        console.log("YOU WIN");
+        winning_announcement.textContent = `You win, ${playerSelection} beats ${computerSelection}`;
         playerScore++;
+        display_player_score.textContent = playerScore;
     } else if (playerSelection == "paper" && computerSelection == "rock") {
-        console.log("YOU WIN");
+        winning_announcement.textContent = `You win, ${playerSelection} beats ${computerSelection}`;
         playerScore++;
+        display_player_score.textContent = playerScore;
     } else if (playerSelection == "scissors" && computerSelection == "paper") {
-        console.log("YOU WIN");
+        winning_announcement.textContent = `You win, ${playerSelection} beats ${computerSelection}`;
         playerScore++;
+        display_player_score.textContent = playerScore;
     } else {
-        console.log("YOU LOSE")
+        winning_announcement.textContent = `You lose, ${playerSelection} beats ${computerSelection}`;
         computerScore++;
+        display_computer_score.textContent = computerScore;
     }
-}
 
-for (let i = 0; i < 5; i++) {
-    game();
-}
 
-console.log("Player score: "+playerScore+", Computer score: "+computerScore)
-if (playerScore == computerScore){
-    console.log("It's a tie!")
-} else if (playerScore > computerScore) {
-    console.log("Player wins!")
-} else {
-    console.log("Computer wins!")
+
+    //Game end condition
+    total_rounds++;
+    if (total_rounds == 5){
+        if (playerScore == computerScore){
+            winning_announcement.textContent = "Game Over! It's a tie";
+        } else if (playerScore > computerScore) {
+            winning_announcement.textContent = "Game Over! Player wins";
+        } else {
+            winning_announcement.textContent = "Game Over! Computer wins";
+        }
+
+        button1.removeEventListener("click", handleClick);
+        button2.removeEventListener("click", handleClick);
+        button3.removeEventListener("click", handleClick);
+    }
 }

@@ -1,0 +1,60 @@
+html, body {
+    min-height: 100vh;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+#header {
+    width: 100%;
+    margin:0;
+    padding: 20px 0;
+    display: flex;
+    justify-content: center;
+    background-color: rgb(216, 172, 103);
+}
+
+#main {
+    width: 100%;
+    height: auto;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(216, 172, 103);
+    gap: 30px
+    /* border: 2px solid red; */
+}
+
+#score-container {
+    display: flex;
+    gap: 50px;
+    padding: 0 10px;
+    border: 5px solid rgb(108, 79, 32);
+}
+
+#container {
+    display: flex;
+    gap: 50px;
+}
+
+button {
+    width: 100px;
+    height: 50px;
+    background-color: aquamarine;
+    font-size: medium;
+    font-weight: bold;
+}
+
+footer {
+    width: 100%;
+    margin-top: auto; 
+    text-align: center;
+    padding: 20px 0;
+    bottom: 0;
+    position: relative;
+    background-color: black;
+    color: aquamarine;
+    /* border: 2px solid yellow; */
+}
